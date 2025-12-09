@@ -8,6 +8,7 @@ group: focal
 go:
   - 1.23.x
   - 1.24.x
+  - 1.25.x
 
 
 notifications:
