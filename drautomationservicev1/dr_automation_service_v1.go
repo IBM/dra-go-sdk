@@ -1963,15 +1963,15 @@ func UnmarshalEvent(m map[string]json.RawMessage, result interface{}) (err error
 // EventCollection : Container object holding a list of events.
 type EventCollection struct {
 	// Events.
-	Event []Event `json:"event" validate:"required"`
+	Events []Event `json:"events" validate:"required"`
 }
 
 // UnmarshalEventCollection unmarshals an instance of EventCollection from the specified map of raw messages.
 func UnmarshalEventCollection(m map[string]json.RawMessage, result interface{}) (err error) {
 	obj := new(EventCollection)
-	err = core.UnmarshalModel(m, "event", &obj.Event, UnmarshalEvent)
+	err = core.UnmarshalModel(m, "events", &obj.Events, UnmarshalEvent)
 	if err != nil {
-		err = core.SDKErrorf(err, "", "event-error", common.GetComponentInfo())
+		err = core.SDKErrorf(err, "", "events-error", common.GetComponentInfo())
 		return
 	}
 	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))

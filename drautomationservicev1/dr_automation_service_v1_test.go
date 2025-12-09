@@ -3163,7 +3163,7 @@ var _ = Describe(`DrAutomationServiceV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"event": [{"action": "create", "api_source": "dr-automation-api", "event_id": "1cecfe43-43cd-4b1b-86be-30c2d3d2a25f", "level": "info", "message": "Service Instance created successfully", "message_data": {"anyKey": "anyValue"}, "metadata": {"anyKey": "anyValue"}, "resource": "ProvisionID", "time": "2025-06-23T07:12:49.840Z", "timestamp": "1750662769", "user": {"email": "abcuser@ibm.com", "name": "abcuser", "user_id": "IBMid-695000abc7E"}}]}`)
+					fmt.Fprintf(res, "%s", `{"events": [{"action": "create", "api_source": "dr-automation-api", "event_id": "1cecfe43-43cd-4b1b-86be-30c2d3d2a25f", "level": "info", "message": "Service Instance created successfully", "message_data": {"anyKey": "anyValue"}, "metadata": {"anyKey": "anyValue"}, "resource": "ProvisionID", "time": "2025-06-23T07:12:49.840Z", "timestamp": "1750662769", "user": {"email": "abcuser@ibm.com", "name": "abcuser", "user_id": "IBMid-695000abc7E"}}]}`)
 				}))
 			})
 			It(`Invoke ListEvents successfully with retries`, func() {
@@ -3226,7 +3226,7 @@ var _ = Describe(`DrAutomationServiceV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"event": [{"action": "create", "api_source": "dr-automation-api", "event_id": "1cecfe43-43cd-4b1b-86be-30c2d3d2a25f", "level": "info", "message": "Service Instance created successfully", "message_data": {"anyKey": "anyValue"}, "metadata": {"anyKey": "anyValue"}, "resource": "ProvisionID", "time": "2025-06-23T07:12:49.840Z", "timestamp": "1750662769", "user": {"email": "abcuser@ibm.com", "name": "abcuser", "user_id": "IBMid-695000abc7E"}}]}`)
+					fmt.Fprintf(res, "%s", `{"events": [{"action": "create", "api_source": "dr-automation-api", "event_id": "1cecfe43-43cd-4b1b-86be-30c2d3d2a25f", "level": "info", "message": "Service Instance created successfully", "message_data": {"anyKey": "anyValue"}, "metadata": {"anyKey": "anyValue"}, "resource": "ProvisionID", "time": "2025-06-23T07:12:49.840Z", "timestamp": "1750662769", "user": {"email": "abcuser@ibm.com", "name": "abcuser", "user_id": "IBMid-695000abc7E"}}]}`)
 				}))
 			})
 			It(`Invoke ListEvents successfully`, func() {
