@@ -1,28 +1,32 @@
-
 # This workflow will build and unit test the project.
 # If the workflow is running on the "main" branch, then
-# semantic-release is also run to create a new release.
+# semantic-release is also run to create a new release (if
+# warranted by the new commits being built).
 
 name: build
 
-on:
+on: 
   push:
     branches: ['**']
   pull_request:
     branches: ['**']
   workflow_dispatch:
+    # Allow workflow to be triggered manually.
 
 jobs:
   detect-secrets:
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     name: detect-secrets
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: 3.12
 
       - name: Install detect-secrets
         run: |
@@ -43,61 +47,44 @@ jobs:
         go-version: ['1.24', '1.25']
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Setup Go v${{ matrix.go-version }}
         uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.go-version }}
-          check-latest: true
 
-      - name: Print Go environment
+      - name: Install dependencies
         run: |
-          go version
-          echo "Module target (from go.mod):"
-          if [ -f go.mod ]; then grep '^go ' go.mod || true; fi
-
-      # Lint with the official action ONLY on the 1.25 matrix entry; pin to v2.x
-      - name: Run golangci-lint (Go 1.25 only)
-        if: matrix.go-version == '1.25'
-        uses: golangci/golangci-lint-action@v8
-        with:
-          version: v2.7.2
-          args: --build-tags=integration,examples
-          skip-cache: true
-
-      - name: Show golangci-lint version (if installed)
-        run: |
-          command -v golangci-lint && golangci-lint version || true
-
-      - name: Install developer tools
-        run: |
+          curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh| sh -s -- -b $(go env GOPATH)/bin v2.6.2
+          golangci-lint version
           go install golang.org/x/tools/cmd/goimports@latest
 
       - name: Build/Test Project
-        env:
-          # If you added the Makefile guard, align expectations for linter build Go
-          LINT_MIN_GO: 1.25
         run: make travis-ci
 
   publish-release:
-    if: github.ref_name == 'main' && github.event_name != 'pull_request' && !contains(github.event.head_commit.message, '[skip ci]')
+    if: "github.ref_name == 'main' && github.event_name != 'pull_request'"
     needs: build
     name: publish
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: 22
 
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: 3.12
 
       - name: Install Deployment Tools
         run: |
