@@ -17,13 +17,10 @@ jobs:
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     name: detect-secrets
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
@@ -46,8 +43,7 @@ jobs:
         go-version: ['1.24', '1.25']
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup Go v${{ matrix.go-version }}
         uses: actions/setup-go@v5
@@ -61,17 +57,15 @@ jobs:
           echo "Module target (from go.mod):"
           if [ -f go.mod ]; then grep '^go ' go.mod || true; fi
 
-      # Run golangci-lint only on the 1.25 job and pin to a v2.x release built with Go 1.25
+      # Lint with the official action ONLY on the 1.25 matrix entry; pin to v2.x
       - name: Run golangci-lint (Go 1.25 only)
         if: matrix.go-version == '1.25'
-        uses: golangci/golangci-lint-action@v6
+        uses: golangci/golangci-lint-action@v8
         with:
-          # Pin to a recent v2.x release; v2.7.2 is latest as of now.
           version: v2.7.2
           args: --build-tags=integration,examples
           skip-cache: true
 
-      # Show which binary is on PATH (useful when Makefile runs later)
       - name: Show golangci-lint version (if installed)
         run: |
           command -v golangci-lint && golangci-lint version || true
@@ -81,8 +75,8 @@ jobs:
           go install golang.org/x/tools/cmd/goimports@latest
 
       - name: Build/Test Project
-        # If you added a version guard in the Makefile, align expectations.
         env:
+          # If you added the Makefile guard, align expectations for linter build Go
           LINT_MIN_GO: 1.25
         run: make travis-ci
 
@@ -93,18 +87,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           persist-credentials: false
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '22'
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
