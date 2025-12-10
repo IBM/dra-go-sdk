@@ -1,4 +1,8 @@
 
+# This workflow will build and unit test the project.
+# If the workflow is running on the "main" branch, then
+# semantic-release is also run to create a new release.
+
 name: build
 
 on:
@@ -13,14 +17,22 @@ jobs:
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     name: detect-secrets
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: |
+
+      - name: Install detect-secrets
+        run: |
           pip install --upgrade "git+https://github.com/ibm/detect-secrets.git@master#egg=detect-secrets"
-      - run: |
+
+      - name: Run detect-secrets
+        run: |
           detect-secrets scan --update .secrets.baseline
           detect-secrets -v audit --report --fail-on-unaudited --fail-on-live --fail-on-audited-real .secrets.baseline
 
@@ -34,7 +46,8 @@ jobs:
         go-version: ['1.24', '1.25']
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Setup Go v${{ matrix.go-version }}
         uses: actions/setup-go@v5
@@ -42,21 +55,23 @@ jobs:
           go-version: ${{ matrix.go-version }}
           check-latest: true
 
-      - name: Print Go env
+      - name: Print Go environment
         run: |
           go version
-          if [ -f go.mod ]; then echo "go.mod target:"; grep '^go ' go.mod || true; fi
+          echo "Module target (from go.mod):"
+          if [ -f go.mod ]; then grep '^go ' go.mod || true; fi
 
-      # Install a modern golangci-lint via the official action on the 1.25 job only
+      # Run golangci-lint only on the 1.25 job and pin to a v2.x release built with Go 1.25
       - name: Run golangci-lint (Go 1.25 only)
         if: matrix.go-version == '1.25'
         uses: golangci/golangci-lint-action@v6
         with:
-          version: latest
+          # Pin to a recent v2.x release; v2.7.2 is latest as of now.
+          version: v2.7.2
           args: --build-tags=integration,examples
           skip-cache: true
 
-      # (Optional) Confirm version before Makefile guard
+      # Show which binary is on PATH (useful when Makefile runs later)
       - name: Show golangci-lint version (if installed)
         run: |
           command -v golangci-lint && golangci-lint version || true
@@ -66,8 +81,8 @@ jobs:
           go install golang.org/x/tools/cmd/goimports@latest
 
       - name: Build/Test Project
+        # If you added a version guard in the Makefile, align expectations.
         env:
-          # Ensure Makefile guard expects 1.25 when lint runs
           LINT_MIN_GO: 1.25
         run: make travis-ci
 
@@ -76,19 +91,28 @@ jobs:
     needs: build
     name: publish
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - uses: actions/setup-python@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: |
+
+      - name: Install Deployment Tools
+        run: |
           pip install bump-my-version
           npm install
+
       - name: Run semantic-release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
