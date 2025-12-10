@@ -1,3 +1,4 @@
+
 # This workflow will build and unit test the project.
 # If the workflow is running on the "main" branch, then
 # semantic-release is also run to create a new release (if
@@ -5,13 +6,12 @@
 
 name: build
 
-on: 
+on:
   push:
     branches: ['**']
   pull_request:
     branches: ['**']
   workflow_dispatch:
-    # Allow workflow to be triggered manually.
 
 jobs:
   detect-secrets:
@@ -26,7 +26,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.12
+          python-version: '3.12'
 
       - name: Install detect-secrets
         run: |
@@ -54,18 +54,46 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.go-version }}
+          check-latest: true
 
-      - name: Install dependencies
+      - name: Print Go environment
         run: |
-          curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh| sh -s -- -b $(go env GOPATH)/bin v2.6.2
-          golangci-lint version
+          go version
+          echo "Target module go version from go.mod (if present):"
+          if [ -f go.mod ]; then grep '^go ' go.mod || true; fi
+
+      # --- Option A: Use official golangci-lint action (recommended) ---
+      # Run golangci-lint only on the 1.25 job to avoid toolchain mismatch
+      - name: Run golangci-lint (only on Go 1.25)
+        if: matrix.go-version == '1.25'
+        uses: golangci/golangci-lint-action@v6
+        with:
+          # Use a recent release (or 'latest'); newer releases are built with a new Go toolchain.
+          version: latest
+          args: --build-tags=integration,examples
+          skip-cache: true
+
+      # --- Option B: Build golangci-lint from source with the job's Go toolchain ---
+      # Uncomment this block if you prefer to build from source instead of using the action above.
+      # - name: Install golangci-lint from source with current Go
+      #   run: |
+      #     go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+      #     which golangci-lint
+      #     golangci-lint version
+      #
+      # - name: Run golangci-lint (source build)
+      #   run: golangci-lint run --build-tags=integration,examples
+
+      - name: Install developer tools
+        run: |
+          # goimports for formatting; install with current toolchain
           go install golang.org/x/tools/cmd/goimports@latest
 
       - name: Build/Test Project
         run: make travis-ci
 
   publish-release:
-    if: "github.ref_name == 'main' && github.event_name != 'pull_request'"
+    if: github.ref_name == 'main' && github.event_name != 'pull_request' && !contains(github.event.head_commit.message, '[skip ci]')
     needs: build
     name: publish
     runs-on: ubuntu-latest
@@ -79,12 +107,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: '22'
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.12
+          python-version: '3.12'
 
       - name: Install Deployment Tools
         run: |
