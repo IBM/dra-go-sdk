@@ -62,27 +62,16 @@ jobs:
           echo "Target module go version from go.mod (if present):"
           if [ -f go.mod ]; then grep '^go ' go.mod || true; fi
 
-      # --- Option A: Use official golangci-lint action (recommended) ---
-      # Run golangci-lint only on the 1.25 job to avoid toolchain mismatch
-      - name: Run golangci-lint (only on Go 1.25)
-        if: matrix.go-version == '1.25'
-        uses: golangci/golangci-lint-action@v6
-        with:
-          # Use a recent release (or 'latest'); newer releases are built with a new Go toolchain.
-          version: latest
-          args: --build-tags=integration,examples
-          skip-cache: true
-
       # --- Option B: Build golangci-lint from source with the job's Go toolchain ---
       # Uncomment this block if you prefer to build from source instead of using the action above.
-      # - name: Install golangci-lint from source with current Go
-      #   run: |
-      #     go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-      #     which golangci-lint
-      #     golangci-lint version
-      #
-      # - name: Run golangci-lint (source build)
-      #   run: golangci-lint run --build-tags=integration,examples
+      - name: Install golangci-lint from source with current Go
+        run: |
+           go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+           which golangci-lint
+           golangci-lint version
+      
+      - name: Run golangci-lint (source build)
+        run: golangci-lint run --build-tags=integration,examples
 
       - name: Install developer tools
         run: |
