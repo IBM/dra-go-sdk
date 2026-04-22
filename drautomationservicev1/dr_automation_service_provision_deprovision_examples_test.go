@@ -122,7 +122,7 @@ var _ = Describe(`ResourceControllerV2 Examples Tests`, func() {
 		// This prints the instance details that will be used in the delete request.
 		It(`DeleteResourceInstance request example`, func() {
 			// begin-delete_resource_instance
-			instanceGUID := "crn:v1:bluemix:public:power-dr-automation:global:a/123456991da601b001df1fe:fc61d5cd-a583-431c-aaf6-261bbd99cbd9::"
+			instanceGUID := "crn:v1:bluemix:public:power-dr-automation:global:a/123456991da601b001df1fe:sdfghij-a1a2a3-321a-aaf6-qwerty12345::"
 			deleteResourceInstanceOptions := resourceControllerService.NewDeleteResourceInstanceOptions(
 				instanceGUID,
 			)

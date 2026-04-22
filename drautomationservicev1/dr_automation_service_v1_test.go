@@ -2100,7 +2100,7 @@ var _ = Describe(`DrAutomationServiceV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"dr_standby_workspace_description": "anyValue", "dr_standby_workspaces": [{"details": {"crn": "crn:v1:bluemix:public:power-iaas:lon06:a/094f4214c75941f991da601b001df1fe:b6297e60-d0fe-4e24-8b15-276cf0645737::"}, "id": "ID", "location": {"region": "lon06", "type": "data-center", "url": "https://lon.power-iaas.cloud.ibm.com"}, "name": "Name", "status": "Status"}], "dr_workspace_description": "anyValue", "dr_workspaces": [{"default": true, "details": {"crn": "crn:v1:bluemix:public:power-iaas:lon06:a/094f4214c75941f991da601b001df1fe:b6297e60-d0fe-4e24-8b15-276cf0645737::"}, "id": "ID", "location": {"region": "lon06", "type": "data-center", "url": "https://lon.power-iaas.cloud.ibm.com"}, "name": "Name", "status": "active"}]}`)
+					fmt.Fprintf(res, "%s", `{"dr_standby_workspace_description": "anyValue", "dr_standby_workspaces": [{"details": {"crn": "crn:v1:bluemix:public:power-iaas:lon06:a/9876543211f991da6012345678a:baq1sw2de3fr4-4e24-8b15-qwerty123456::"}, "id": "ID", "location": {"region": "lon06", "type": "data-center", "url": "https://lon.power-iaas.cloud.ibm.com"}, "name": "Name", "status": "Status"}], "dr_workspace_description": "anyValue", "dr_workspaces": [{"default": true, "details": {"crn": "crn:v1:bluemix:public:power-iaas:lon06:a/9876543211f991da6012345678a:baq1sw2de3fr4-4e24-8b15-qwerty123456::"}, "id": "ID", "location": {"region": "lon06", "type": "data-center", "url": "https://lon.power-iaas.cloud.ibm.com"}, "name": "Name", "status": "active"}]}`)
 				}))
 			})
 			It(`Invoke GetPowervsWorkspaces successfully with retries`, func() {
@@ -2156,7 +2156,7 @@ var _ = Describe(`DrAutomationServiceV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"dr_standby_workspace_description": "anyValue", "dr_standby_workspaces": [{"details": {"crn": "crn:v1:bluemix:public:power-iaas:lon06:a/094f4214c75941f991da601b001df1fe:b6297e60-d0fe-4e24-8b15-276cf0645737::"}, "id": "ID", "location": {"region": "lon06", "type": "data-center", "url": "https://lon.power-iaas.cloud.ibm.com"}, "name": "Name", "status": "Status"}], "dr_workspace_description": "anyValue", "dr_workspaces": [{"default": true, "details": {"crn": "crn:v1:bluemix:public:power-iaas:lon06:a/094f4214c75941f991da601b001df1fe:b6297e60-d0fe-4e24-8b15-276cf0645737::"}, "id": "ID", "location": {"region": "lon06", "type": "data-center", "url": "https://lon.power-iaas.cloud.ibm.com"}, "name": "Name", "status": "active"}]}`)
+					fmt.Fprintf(res, "%s", `{"dr_standby_workspace_description": "anyValue", "dr_standby_workspaces": [{"details": {"crn": "crn:v1:bluemix:public:power-iaas:lon06:a/123456991da601b001df1fe:sdfghij-a1a2a3-321a-aaf6-qwerty12345::"}, "id": "ID", "location": {"region": "lon06", "type": "data-center", "url": "https://lon.power-iaas.cloud.ibm.com"}, "name": "Name", "status": "Status"}], "dr_workspace_description": "anyValue", "dr_workspaces": [{"default": true, "details": {"crn": "crn:v1:bluemix:public:power-iaas:lon06:a/9876543211f991da6012345678a:baq1sw2de3fr4-4e24-8b15-qwerty123456::"}, "id": "ID", "location": {"region": "lon06", "type": "data-center", "url": "https://lon.power-iaas.cloud.ibm.com"}, "name": "Name", "status": "active"}]}`)
 				}))
 			})
 			It(`Invoke GetPowervsWorkspaces successfully`, func() {
