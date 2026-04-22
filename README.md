@@ -1,7 +1,7 @@
 [![Build Status](https://v3.travis-ci.com/DRAutomation/dra-go-sdk.svg?token=Z799xXryYYPor3yyJxEs&branch=main)](https://v3.travis.ibm.com/DRAutomation/dra-go-sdk)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-# IBM Cloud DrAutomation Go SDK 0.0.1
+# IBM Cloud DrAutomation Go SDK 0.0.2
 Go client library to interact with the various [IBM Cloud DrAutomation services APIs](https://cloud.ibm.com/docs/dr-automation-powervs).
 
 Disclaimer: this SDK is being released initially as a **pre-release** version.
@@ -39,9 +39,11 @@ Changes might occur which impact applications that use this SDK.
 
 The IBM Cloud DrAutomation services Go SDK allows developers to programmatically interact with the following IBM Cloud services:
 
-Service Name | Package name 
+Service Name - Plan | Package name 
 --- | ---
 [DrAutomation Service](https://cloud.ibm.com/apidocs/dr-automation-powervs) | drautomationservicev1
+[PowerHA Service](https://cloud.ibm.com/apidocs/dr-automation-powervs) | powerhaautomationservicev1
+
 
 ## Prerequisites
 
@@ -49,19 +51,26 @@ Service Name | Package name
 
 * An [IBM Cloud][ibm-cloud-onboarding] account.
 * An IAM API key to allow the SDK to access your account. Create one [here](https://cloud.ibm.com/iam/apikeys).
-* Go version 1.23 or above.
+* Go version 1.25 or above.
 
 ## Installation
-The current version of this SDK: 0.0.1
+The current version of this SDK: 0.0.2
 
 ### Go modules  
 If your application uses Go modules for dependency management (recommended), just add an import for each service 
 that you will use in your application.  
-Here is an example:
+#### Example – DrAutomation Service-Plan
 
 ```go
 import (
 	"github.com/IBM/dra-go-sdk/drautomationservicev1"
+)
+```
+#### Example – PowerHA Service-Plan
+
+```go
+import (
+	"github.com/IBM/dra-go-sdk/powerhaautomationservicev1"
 )
 ```
 Next, run `go build` or `go mod tidy` to download and install the new dependencies and update your application's
@@ -73,8 +82,13 @@ See the service table above to find the approprate package name for the services
 
 ### `go get` command  
 Alternatively, you can use the `go get` command to download and install the appropriate packages needed by your application:
+#### Example – DrAutomation Service-Plan
 ```
 go get -u github.com/IBM/dra-go-sdk/drautomationservicev1
+```
+#### Example – PowerHA Service-Plan
+```
+go get -u github.com/IBM/dra-go-sdk/powerhaautomationservicev1
 ```
 Be sure to use the appropriate package name from the service table above for the services used by your application.
 
@@ -84,16 +98,21 @@ For general SDK usage information, please see [this link](https://github.com/IBM
 ### Environment Configuration
 
 The SDK can be configured using environment variables. Here's an example configuration:
-
+#### DrAutomation Service Configuration
 ```bash
-# Service URL (for development/testing)
-export DR_AUTOMATION_SERVICE_URL=https://power-dra.cloud.ibm.com
-
 # Authentication type
 export DR_AUTOMATION_SERVICE_AUTH_TYPE=bearerToken
 
 # Bearer token for authentication
-export DR_AUTOMATION_SERVICE_BEARER_TOKEN=eyJraWQiOiIyMDE5MD......
+export DR_AUTOMATION_SERVICE_BEARER_TOKEN=<bearerToken>
+```
+#### PowerHA Service Configuration
+```bash
+# Authentication type
+export POWERHA_AUTOMATION_SERVICE_AUTH_TYPE=bearerToken
+
+# Bearer token for authentication
+export POWERHA_AUTOMATION_SERVICE_BEARER_TOKEN=<bearerToken>
 ```
 
 **Note:** The bearer token shown above is an example. For production use:

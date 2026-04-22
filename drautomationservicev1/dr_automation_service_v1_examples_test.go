@@ -1,7 +1,7 @@
 //go:build examples
 
 /**
- * (C) Copyright IBM Corp. 2025.
+ * (C) Copyright IBM Corp. 2026.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -388,7 +388,6 @@ var _ = Describe(`DrAutomationServiceV1 Examples Tests`, func() {
 			listEventsOptions := drAutomationServiceService.NewListEventsOptions(
 				"123456d3-1122-3344-b67d-4389b44b7bf9",
 			)
-			listEventsOptions.SetTime("2025-06-19T23:59:59Z")
 			listEventsOptions.SetFromTime("2025-06-19T00:00:00Z")
 			listEventsOptions.SetToTime("2025-06-19T23:59:59Z")
 

@@ -1,4 +1,5 @@
 //go:build customexamples
+// +build customexamples
 
 package drautomationservicev1_test
 
@@ -102,14 +103,23 @@ var _ = Describe(`DrAutomationServiceV1 Examples Tests`, func() {
 			)
 			createManageDrOptions.SetOrchestratorHa(true)
 			createManageDrOptions.SetTier("tier1")
-			createManageDrOptions.SetSSHKeyName("vijaykey")
+			createManageDrOptions.SetSSHKeyName("sshkey_name")
 			createManageDrOptions.SetAPIKey("apikey is required")
+			// OrchestratorNetworkIds is optional
+			createManageDrOptions.SetOrchestratorNetworkIds(
+				[]string{"7407bca6-1276-42bf-bc22-a7bef62be9d2"},
+			)
 			// Standby fields (only for HA)
 			createManageDrOptions.SetStandbyOrchestratorName("drautomationstandbymh1")
 			createManageDrOptions.SetStandbyOrchestratorWorkspaceID("71027b79-0e31-44f6-a499-63eca1a66feb")
 			createManageDrOptions.SetStandbyMachineType("s922")
 			createManageDrOptions.SetStandbyTier("tier1")
+			createManageDrOptions.SetStandbySSHKeyName("standby_sshkey_name")
 			createManageDrOptions.SetStandByRedeploy("false")
+			// StandbyOrchestratorNetworkIds is optional
+			createManageDrOptions.SetStandbyOrchestratorNetworkIds(
+				[]string{"0f6354ae-8d3f-487b-bcf8-43f2e55127b9"},
+			)
 			// mfa
 			createManageDrOptions.SetClientID("123abcd-97d2-4b14-bf62-8eaecc67a122")
 			createManageDrOptions.SetClientSecret("abcdefgT5rS8wK6qR9dD7vF1hU4sA3bE2jG0pL9oX7yC")
@@ -149,12 +159,20 @@ var _ = Describe(`DrAutomationServiceV1 Examples Tests`, func() {
 			createManageDrOptions.SetSecret("12345-997c-1d0d-5503-27ca856f2b5a")
 			createManageDrOptions.SetRegionID("us-south")
 			createManageDrOptions.SetAPIKey("apikey is required")
+			// OrchestratorNetworkIds is optional
+			createManageDrOptions.SetOrchestratorNetworkIds(
+				[]string{"7407bca6-1276-42bf-bc22-a7bef62be9d2"},
+			)
 			// Standby fields (only for HA)
 			createManageDrOptions.SetStandbyOrchestratorName("drautomationstandbymh3")
 			createManageDrOptions.SetStandbyOrchestratorWorkspaceID("71027b79-0e31-44f6-a499-63eca1a66feb")
 			createManageDrOptions.SetStandbyMachineType("s922")
 			createManageDrOptions.SetStandbyTier("tier1")
 			createManageDrOptions.SetStandByRedeploy("false")
+			// StandbyOrchestratorNetworkIds is optional
+			createManageDrOptions.SetStandbyOrchestratorNetworkIds(
+				[]string{"0f6354ae-8d3f-487b-bcf8-43f2e55127b9"},
+			)
 			// mfa
 			createManageDrOptions.SetClientID("123abcd-97d2-4b14-bf62-8eaecc67a122")
 			createManageDrOptions.SetClientSecret("abcdefgT5rS8wK6qR9dD7vF1hU4sA3bE2jG0pL9oX7yC")
@@ -191,8 +209,12 @@ var _ = Describe(`DrAutomationServiceV1 Examples Tests`, func() {
 			)
 			createManageDrOptions.SetOrchestratorHa(false)
 			createManageDrOptions.SetTier("tier1")
-			createManageDrOptions.SetSSHKeyName("vijaykey")
+			createManageDrOptions.SetSSHKeyName("sshkey_name")
 			createManageDrOptions.SetAPIKey("apikey is required")
+			// OrchestratorNetworkIds is optional
+			createManageDrOptions.SetOrchestratorNetworkIds(
+				[]string{"7407bca6-1276-42bf-bc22-a7bef62be9d2"},
+			)
 			// mfa
 			createManageDrOptions.SetClientID("123abcd-97d2-4b14-bf62-8eaecc67a122")
 			createManageDrOptions.SetClientSecret("abcdefgT5rS8wK6qR9dD7vF1hU4sA3bE2jG0pL9oX7yC")
@@ -232,6 +254,10 @@ var _ = Describe(`DrAutomationServiceV1 Examples Tests`, func() {
 			createManageDrOptions.SetSecret("12345-997c-1d0d-5503-27ca856f2b5a")
 			createManageDrOptions.SetRegionID("us-south")
 			createManageDrOptions.SetAPIKey("apikey is required")
+			// OrchestratorNetworkIds is optional
+			createManageDrOptions.SetOrchestratorNetworkIds(
+				[]string{"7407bca6-1276-42bf-bc22-a7bef62be9d2"},
+			)
 			// mfa
 			createManageDrOptions.SetClientID("123abcd-97d2-4b14-bf62-8eaecc67a122")
 			createManageDrOptions.SetClientSecret("abcdefgT5rS8wK6qR9dD7vF1hU4sA3bE2jG0pL9oX7yC")
