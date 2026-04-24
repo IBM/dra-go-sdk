@@ -1,7 +1,7 @@
 [![Build Status](https://v3.travis-ci.com/DRAutomation/dra-go-sdk.svg?token=Z799xXryYYPor3yyJxEs&branch=main)](https://v3.travis.ibm.com/DRAutomation/dra-go-sdk)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-# IBM Cloud DrAutomation Go SDK 0.0.2
+# IBM Cloud DrAutomation Go SDK 0.0.1
 Go client library to interact with the various [IBM Cloud DrAutomation services APIs](https://cloud.ibm.com/docs/dr-automation-powervs).
 
 Disclaimer: this SDK is being released initially as a **pre-release** version.
@@ -54,7 +54,7 @@ Service Name - Plan | Package name
 * Go version 1.25 or above.
 
 ## Installation
-The current version of this SDK: 0.0.2
+The current version of this SDK: 0.0.1
 
 ### Go modules  
 If your application uses Go modules for dependency management (recommended), just add an import for each service 
