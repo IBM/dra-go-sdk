@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package drautomationservicev1_test
+package powerhaautomationservicev1_test
 
 import (
 	"testing"
@@ -23,7 +23,7 @@ import (
 	. "github.com/onsi/gomega"
 )
 
-func TestDrAutomationServiceV1(t *testing.T) {
+func TestPowerhaAutomationServiceV1(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "DrAutomationServiceV1 Suite")
+	RunSpecs(t, "PowerhaAutomationServiceV1 Suite")
 }

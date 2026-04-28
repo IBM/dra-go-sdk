@@ -1,7 +1,7 @@
 //go:build integration
 
 /**
- * (C) Copyright IBM Corp. 2025.
+ * (C) Copyright IBM Corp. 2026.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,10 +24,10 @@ import (
 	"os"
 	"time"
 
+	"github.com/IBM/dra-go-sdk/drautomationservicev1"
 	"github.com/IBM/go-sdk-core/v5/core"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"github.com/IBM/dra-go-sdk/drautomationservicev1"
 )
 
 /**
@@ -42,10 +42,10 @@ var _ = Describe(`DrAutomationServiceV1 Integration Tests`, func() {
 	const externalConfigFile = "../dr_automation_service_v1.env"
 
 	var (
-		err          error
+		err                        error
 		drAutomationServiceService *drautomationservicev1.DrAutomationServiceV1
-		serviceURL   string
-		config       map[string]string
+		serviceURL                 string
+		config                     map[string]string
 	)
 
 	var shouldSkipTest = func() {
@@ -97,7 +97,7 @@ var _ = Describe(`DrAutomationServiceV1 Integration Tests`, func() {
 		})
 		It(`GetApikey(getApikeyOptions *GetApikeyOptions)`, func() {
 			getApikeyOptions := &drautomationservicev1.GetApikeyOptions{
-				InstanceID: core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
+				InstanceID:     core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
 				AcceptLanguage: core.StringPtr("testString"),
 			}
 
@@ -114,8 +114,8 @@ var _ = Describe(`DrAutomationServiceV1 Integration Tests`, func() {
 		})
 		It(`CreateApikey(createApikeyOptions *CreateApikeyOptions)`, func() {
 			createApikeyOptions := &drautomationservicev1.CreateApikeyOptions{
-				InstanceID: core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
-				APIKey: core.StringPtr("abcdefrg_izklmnop_fxbEED"),
+				InstanceID:     core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
+				APIKey:         core.StringPtr("abcdefrg_izklmnop_fxbEED"),
 				AcceptLanguage: core.StringPtr("testString"),
 			}
 
@@ -132,8 +132,8 @@ var _ = Describe(`DrAutomationServiceV1 Integration Tests`, func() {
 		})
 		It(`UpdateApikey(updateApikeyOptions *UpdateApikeyOptions)`, func() {
 			updateApikeyOptions := &drautomationservicev1.UpdateApikeyOptions{
-				InstanceID: core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
-				APIKey: core.StringPtr("adfadfdsafsdfdsf"),
+				InstanceID:     core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
+				APIKey:         core.StringPtr("adfadfdsafsdfdsf"),
 				AcceptLanguage: core.StringPtr("testString"),
 			}
 
@@ -150,7 +150,7 @@ var _ = Describe(`DrAutomationServiceV1 Integration Tests`, func() {
 		})
 		It(`GetDrGrsLocationPair(getDrGrsLocationPairOptions *GetDrGrsLocationPairOptions)`, func() {
 			getDrGrsLocationPairOptions := &drautomationservicev1.GetDrGrsLocationPairOptions{
-				InstanceID: core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
+				InstanceID:     core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
 				AcceptLanguage: core.StringPtr("testString"),
 			}
 
@@ -167,7 +167,7 @@ var _ = Describe(`DrAutomationServiceV1 Integration Tests`, func() {
 		})
 		It(`GetDrLocations(getDrLocationsOptions *GetDrLocationsOptions)`, func() {
 			getDrLocationsOptions := &drautomationservicev1.GetDrLocationsOptions{
-				InstanceID: core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
+				InstanceID:     core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
 				AcceptLanguage: core.StringPtr("testString"),
 			}
 
@@ -184,7 +184,7 @@ var _ = Describe(`DrAutomationServiceV1 Integration Tests`, func() {
 		})
 		It(`GetDrManagedVM(getDrManagedVMOptions *GetDrManagedVMOptions)`, func() {
 			getDrManagedVMOptions := &drautomationservicev1.GetDrManagedVMOptions{
-				InstanceID: core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
+				InstanceID:     core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
 				AcceptLanguage: core.StringPtr("testString"),
 			}
 
@@ -201,7 +201,7 @@ var _ = Describe(`DrAutomationServiceV1 Integration Tests`, func() {
 		})
 		It(`GetDrSummary(getDrSummaryOptions *GetDrSummaryOptions)`, func() {
 			getDrSummaryOptions := &drautomationservicev1.GetDrSummaryOptions{
-				InstanceID: core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
+				InstanceID:     core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
 				AcceptLanguage: core.StringPtr("testString"),
 			}
 
@@ -218,9 +218,9 @@ var _ = Describe(`DrAutomationServiceV1 Integration Tests`, func() {
 		})
 		It(`GetMachineType(getMachineTypeOptions *GetMachineTypeOptions)`, func() {
 			getMachineTypeOptions := &drautomationservicev1.GetMachineTypeOptions{
-				InstanceID: core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
+				InstanceID:           core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
 				PrimaryWorkspaceName: core.StringPtr("Test-workspace-wdc06"),
-				AcceptLanguage: core.StringPtr("testString"),
+				AcceptLanguage:       core.StringPtr("testString"),
 				StandbyWorkspaceName: core.StringPtr("Test-workspace-wdc07"),
 			}
 
@@ -254,7 +254,7 @@ var _ = Describe(`DrAutomationServiceV1 Integration Tests`, func() {
 		})
 		It(`GetManageDr(getManageDrOptions *GetManageDrOptions)`, func() {
 			getManageDrOptions := &drautomationservicev1.GetManageDrOptions{
-				InstanceID: core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
+				InstanceID:     core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
 				AcceptLanguage: core.StringPtr("testString"),
 			}
 
@@ -271,33 +271,40 @@ var _ = Describe(`DrAutomationServiceV1 Integration Tests`, func() {
 		})
 		It(`CreateManageDr(createManageDrOptions *CreateManageDrOptions)`, func() {
 			createManageDrOptions := &drautomationservicev1.CreateManageDrOptions{
-				InstanceID: core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
-				LocationID: core.StringPtr("dal10"),
-				MachineType: core.StringPtr("bx2-4x16"),
-				OrchestratorLocationType: core.StringPtr("off-premises"),
-				OrchestratorName: core.StringPtr("adminUser"),
-				OrchestratorPassword: core.StringPtr("testString"),
-				OrchestratorWorkspaceID: core.StringPtr("orch-workspace-01"),
-				APIKey: core.StringPtr("testString"),
-				ClientID: core.StringPtr("abcd-97d2-1234-bf62-8eaecc67a1234"),
-				ClientSecret: core.StringPtr("abcd1234xM1y123wK6qR9123456789bE2jG0pabcdefgh"),
-				GUID: core.StringPtr("123e4567-e89b-12d3-a456-426614174000"),
-				OrchestratorHa: core.BoolPtr(true),
-				ProxyIP: core.StringPtr("10.40.30.10:8888"),
-				RegionID: core.StringPtr("us-south"),
-				ResourceInstance: core.StringPtr("crn:v1:bluemix:public:resource-controller::res123"),
-				Secret: core.StringPtr("testString"),
-				SecretGroup: core.StringPtr("default-secret-group"),
-				SSHKeyName: core.StringPtr("my-ssh-key"),
-				StandbyMachineType: core.StringPtr("bx2-8x32"),
-				StandbyOrchestratorName: core.StringPtr("standbyAdmin"),
-				StandbyOrchestratorWorkspaceID: core.StringPtr("orch-standby-02"),
-				StandbyTier: core.StringPtr("Premium"),
-				TenantName: core.StringPtr("xxx.ibm.com"),
-				Tier: core.StringPtr("Standard"),
-				StandByRedeploy: core.StringPtr("testString"),
-				AcceptLanguage: core.StringPtr("testString"),
-				AcceptsIncomplete: core.BoolPtr(true),
+				InstanceID:                           core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
+				LocationID:                           core.StringPtr("dal10"),
+				MachineType:                          core.StringPtr("bx2-4x16"),
+				OrchestratorLocationType:             core.StringPtr("off-premises"),
+				OrchestratorName:                     core.StringPtr("adminUser"),
+				OrchestratorPassword:                 core.StringPtr("testString"),
+				OrchestratorWorkspaceID:              core.StringPtr("orch-workspace-01"),
+				APIKey:                               core.StringPtr("testString"),
+				ManagedApikey:                        core.StringPtr("testString"),
+				ClientID:                             core.StringPtr("abcd-97d2-1234-bf62-8eaecc67a1234"),
+				ClientSecret:                         core.StringPtr("abcd1234xM1y123wK6qR9123456789bE2jG0pabcdefgh"),
+				GUID:                                 core.StringPtr("123e4567-e89b-12d3-a456-426614174000"),
+				OrchestratorHa:                       core.BoolPtr(true),
+				OrchestratorNetworkIds:               []string{"d9c7f1ab-47b2-4e6f-b0a8-9d2e5d7f5678", "8ab29d71-8321-44d4-9cae-119fdc30a8ab"},
+				OrchestratorWorkspaceLocation:        core.StringPtr("us-south"),
+				ProxyIP:                              core.StringPtr("10.40.30.10:8888"),
+				RegionID:                             core.StringPtr("us-south"),
+				ResourceInstance:                     core.StringPtr("crn:v1:bluemix:public:resource-controller:us-south:a/123456fb04ceebfb4a9fd38c22334455:resource-instance::"),
+				SecondaryWorkspaceID:                 core.StringPtr("secondary-workspace789"),
+				Secret:                               core.StringPtr("testString"),
+				SecretGroup:                          core.StringPtr("default-secret-group"),
+				SSHKeyName:                           core.StringPtr("sshkey-name"),
+				StandbyMachineType:                   core.StringPtr("bx2-8x32"),
+				StandbyOrchestratorName:              core.StringPtr("standbyAdmin"),
+				StandbyOrchestratorNetworkIds:        []string{"d9c7f1ab-47b2-4e6f-b0a8-9d2e5d7f5678", "8ab29d71-8321-44d4-9cae-119fdc30a8ab"},
+				StandbySSHKeyName:                    core.StringPtr("standby-sshkey-name"),
+				StandbyOrchestratorWorkspaceID:       core.StringPtr("orch-standby-02"),
+				StandbyOrchestratorWorkspaceLocation: core.StringPtr("us-east"),
+				StandbyTier:                          core.StringPtr("Premium"),
+				TenantName:                           core.StringPtr("xxx.ibm.com"),
+				Tier:                                 core.StringPtr("Standard"),
+				StandByRedeploy:                      core.StringPtr("testString"),
+				AcceptLanguage:                       core.StringPtr("testString"),
+				AcceptsIncomplete:                    core.BoolPtr(true),
 			}
 
 			serviceInstanceManageDr, response, err := drAutomationServiceService.CreateManageDr(createManageDrOptions)
@@ -313,7 +320,7 @@ var _ = Describe(`DrAutomationServiceV1 Integration Tests`, func() {
 		})
 		It(`GetLastOperation(getLastOperationOptions *GetLastOperationOptions)`, func() {
 			getLastOperationOptions := &drautomationservicev1.GetLastOperationOptions{
-				InstanceID: core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
+				InstanceID:     core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
 				AcceptLanguage: core.StringPtr("testString"),
 			}
 
@@ -330,10 +337,9 @@ var _ = Describe(`DrAutomationServiceV1 Integration Tests`, func() {
 		})
 		It(`ListEvents(listEventsOptions *ListEventsOptions)`, func() {
 			listEventsOptions := &drautomationservicev1.ListEventsOptions{
-				InstanceID: core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
-				Time: core.StringPtr("2025-06-19T23:59:59Z"),
-				FromTime: core.StringPtr("2025-06-19T00:00:00Z"),
-				ToTime: core.StringPtr("2025-06-19T23:59:59Z"),
+				InstanceID:     core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
+				FromTime:       core.StringPtr("2025-06-19T00:00:00Z"),
+				ToTime:         core.StringPtr("2025-06-19T23:59:59Z"),
 				AcceptLanguage: core.StringPtr("testString"),
 			}
 
@@ -350,8 +356,8 @@ var _ = Describe(`DrAutomationServiceV1 Integration Tests`, func() {
 		})
 		It(`GetEvent(getEventOptions *GetEventOptions)`, func() {
 			getEventOptions := &drautomationservicev1.GetEventOptions{
-				InstanceID: core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
-				EventID: core.StringPtr("00116b2a-9326-4024-839e-fb5364b76898"),
+				InstanceID:     core.StringPtr("123456d3-1122-3344-b67d-4389b44b7bf9"),
+				EventID:        core.StringPtr("00116b2a-9326-4024-839e-fb5364b76898"),
 				AcceptLanguage: core.StringPtr("testString"),
 			}
 

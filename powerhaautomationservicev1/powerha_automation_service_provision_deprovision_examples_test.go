@@ -1,7 +1,7 @@
 //go:build customexamples
 // +build customexamples
 
-package drautomationservicev1_test
+package powerhaautomationservicev1_test
 
 import (
 	"encoding/json"
@@ -22,12 +22,12 @@ var _ = Describe(`ResourceControllerV2 Examples Tests`, func() {
 		resourceControllerService *resourcecontrollerv2.ResourceControllerV2
 
 		// Configurable values
-		resourceGroup        string = "8d445dfd58484a4892207123456"        // Replace with your resource group ID
-		serviceName          string = "power-dr-automation"                // Catalog service name
-		planName             string = "power-virtual-server-dr-automation" // Mention your plan name for your service to create the provision.
-		resourceInstanceName string = "mympsdktest"                        // Desired instance name
-		targetRegion         string = "global"                             // Desired region
-		iamAPIKey            string = "<apikey>"                           // Replace with your IBM Cloud API key
+		resourceGroup        string = "8d445dfd58484a4892207123456" // Replace with your resource group ID
+		serviceName          string = "power-dr-automation"         // Catalog service name
+		planName             string = "powerha-aix-powervs"         // Mention your plan name for your service to create the provision.
+		resourceInstanceName string = "myphasdktest"                // Desired instance name
+		targetRegion         string = "us-east"                     // Desired region
+		iamAPIKey            string = "<apikey>"                    // Replace with your IBM Cloud API key
 	)
 
 	Describe(`Client initialization`, func() {
@@ -60,7 +60,6 @@ var _ = Describe(`ResourceControllerV2 Examples Tests`, func() {
 
 			listOpts := catalogClient.NewListCatalogEntriesOptions()
 			listOpts.SetQ(fmt.Sprintf("name:%s", serviceName))
-			listOpts.SetAccount("global")
 			listOpts.SetComplete(true)
 
 			searchResult, _, err := catalogClient.ListCatalogEntries(listOpts)
@@ -74,6 +73,7 @@ var _ = Describe(`ResourceControllerV2 Examples Tests`, func() {
 
 			childResult, _, err := catalogClient.GetChildObjects(getChildOpts)
 			Expect(err).To(BeNil())
+
 			// Found the plan id from the user given plan name.
 			var resourcePlanID string
 			for _, child := range childResult.Resources {
@@ -122,7 +122,7 @@ var _ = Describe(`ResourceControllerV2 Examples Tests`, func() {
 		// This prints the instance details that will be used in the delete request.
 		It(`DeleteResourceInstance request example`, func() {
 			// begin-delete_resource_instance
-			instanceGUID := "crn:v1:bluemix:public:power-dr-automation:global:a/123456991da601b001df1fe:sdfghij-a1a2a3-321a-aaf6-qwerty12345::"
+			instanceGUID := "crn:v1:bluemix:public:power-dr-automation:us-east:a/123456991da601b001df1fe:sdfghij-a1a2a3-321a-aaf6-qwerty12345::"
 			deleteResourceInstanceOptions := resourceControllerService.NewDeleteResourceInstanceOptions(
 				instanceGUID,
 			)

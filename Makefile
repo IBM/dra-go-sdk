@@ -6,7 +6,7 @@ TEST_TAGS=
 COVERAGE=-coverprofile=coverage.txt -covermode=atomic
 
 all: tidy test lint
-travis-ci: tidy test-cov lint
+ci: tidy test-cov lint
 
 test:
 	${GO} test ./... ${TEST_TAGS}
